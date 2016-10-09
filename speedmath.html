@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang=en-US>
+<head>
+	<meta charset=UTF-8>
+	<title>Math speed typing</title>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		config: ["MMLorHTML.js"],
+		jax: ["input/AsciiMath", "output/NativeMML"],
+		extensions: ["asciimath2jax.js", "fast-preview.js"],
+		});
+	</script>
+	<script src=https://cdn.mathjax.org/mathjax/latest/MathJax.js>
+	</script>
+
+	<style>
+		#content, html, body {
+		    height: 98%;
+		}
+		#left {
+		    float: left;
+		    width: 50%;
+		    height: 100%;
+		    overflow: scroll;
+		    resize: none;
+		    border: none;
+                    padding: 0;
+		}
+		#right {
+		    float: left;
+		    width: 50%;
+		    height: 100%;
+		    overflow: scroll;
+                    white-space: pre;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="content">
+		<textarea id="left">`sum_(i=1)^n a_i x^i`</textarea>
+		<div id="right">`sum_(i=1)^n a_i x^i`
+Let's put more text here.
+
+What about another paragraph?
+
+Yes, and let's put some math too! `c^2 = a^2 + b^2`</div>
+	</div>
+	<script>
+		var asciiSource = document.getElementById('left')
+		var asciiRendering = document.getElementById('right')
+		asciiSource.addEventListener('input', function() {
+			asciiRendering .innerHTML = asciiSource.value;
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub, asciiRendering]);
+		})
+	</script>
+</body>
